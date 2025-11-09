@@ -2,6 +2,9 @@
 .staggered-menu-wrapper { position: fixed; top: 0; right: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 400; background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.3s ease; }
 .staggered-menu-wrapper[data-open] { pointer-events: auto; opacity: 1; }
 
+/* Allow nav to be clickable even when wrapper is inactive */
+nav { position: relative; z-index: 401; pointer-events: auto; }
+
 /* Header overlay area (logo + toggle) */
 .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.25rem; background: transparent; z-index: 20; pointer-events: none; }
 .staggered-menu-header > * { pointer-events: auto; }
