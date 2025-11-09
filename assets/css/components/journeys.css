@@ -1,0 +1,316 @@
+/* Journeys Section - Testimonials & Client Stories */
+
+.journeys-section {
+    width: 100%;
+    min-height: 100vh;
+    background: #000;
+    padding: 6rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.journeys-container {
+    width: 100%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+/* Left Column - Title, Description, Navigation */
+.journeys-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.journeys-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.journeys-title h2 {
+    font-family: "PP Neue Montreal";
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.1;
+}
+
+.journeys-subtitle {
+    font-family: "PP Neue Montreal";
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #999;
+    text-transform: lowercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+}
+
+.journeys-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.journeys-info p {
+    font-family: "PP Neue Montreal";
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #ccc;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+.journeys-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    font-family: "PP Neue Montreal";
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #999;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #ff0000;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Right Column - Testimonial & Carousel */
+.journeys-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+    background: rgba(26, 26, 26, 0.3);
+    border: 1px solid #444;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.testimonial-quote {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.testimonial-quote svg {
+    width: 40px;
+    height: 40px;
+}
+
+.testimonial-text {
+    font-family: "PP Neue Montreal";
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.8;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.testimonial-author {
+    font-family: "PP Neue Montreal";
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #ff0000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Image Carousel */
+.testimonial-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.image-carousel {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    border: 1px solid #444;
+}
+
+.carousel-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.carousel-image.active {
+    opacity: 1;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+}
+
+.indicator {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #444;
+    background: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.indicator img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.indicator.active {
+    border: 1px solid #ff0000;
+}
+
+.indicator.active img {
+    opacity: 1;
+}
+
+.indicator:hover {
+    border: 1px solid #666;
+}
+
+/* Responsive Design */
+@media(max-width: 1024px) {
+    .journeys-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .journeys-title h2 {
+        font-size: 2.5rem;
+    }
+
+    .image-carousel {
+        height: 400px;
+    }
+}
+
+@media(max-width: 768px) {
+    .journeys-section {
+        padding: 4rem 2rem;
+    }
+
+    .journeys-container {
+        gap: 2rem;
+    }
+
+    .journeys-title h2 {
+        font-size: 2rem;
+    }
+
+    .journeys-info p {
+        font-size: 0.85rem;
+    }
+
+    .journeys-nav {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        font-size: 0.75rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+
+    .testimonial-text {
+        font-size: 0.85rem;
+    }
+
+    .image-carousel {
+        height: 300px;
+    }
+
+    .indicator {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media(max-width: 600px) {
+    .journeys-section {
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+
+    .journeys-title h2 {
+        font-size: 1.5rem;
+    }
+
+    .journeys-info p {
+        font-size: 0.8rem;
+    }
+
+    .journeys-nav {
+        gap: 0.5rem;
+    }
+
+    .nav-link {
+        font-size: 0.7rem;
+    }
+
+    .testimonial-card {
+        padding: 1rem;
+    }
+
+    .testimonial-text {
+        font-size: 0.8rem;
+    }
+
+    .image-carousel {
+        height: 250px;
+    }
+
+    .indicator {
+        width: 40px;
+        height: 40px;
+    }
+}

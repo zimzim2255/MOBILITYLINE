@@ -1,0 +1,273 @@
+/* Desire Extended Section */
+.desire-extended {
+    background: #000;
+    color: #fff;
+    padding: 80px 2rem;
+    overflow-x: hidden;
+}
+
+.desire-container {
+    max-width: 1400px; /* wider container */
+    margin: 0 auto;
+}
+
+.desire-header {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 60px;
+}
+
+.desire-title h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-family: 'PP Monument Extended';
+}
+
+.desire-info p {
+    color: #cfcfcf;
+    line-height: 1.8;
+    margin-bottom: 28px;
+    font-size: 1.05rem;
+    display: none;
+}
+
+.cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-family: 'PP Neue Montreal';
+}
+
+.cta-link .red-line {
+    width: 24px;
+    height: 3px;
+    background: #00C6FF;
+    display: inline-block;
+    transition: width 0.3s ease;
+}
+
+.cta-link:hover .red-line {
+    width: 32px;
+}
+
+.desire-tabs {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    border-top: 1px solid #1b1b1b;
+    border-bottom: 1px solid #1b1b1b;
+    padding: 16px 0 20px;
+    position: relative;
+    margin: 8px 0 32px; /* reduced gap to bind with card */
+}
+
+.desire-tabs .tab {
+    background: transparent;
+    color: #d0d0d0;
+    border: none;
+    padding: 12px 0 0;
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.95rem;
+    font-family: 'PP Neue Montreal';
+}
+
+.desire-tabs .tab.active {
+    color: #fff;
+}
+
+.desire-tabs .tab.active .tab-label {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* per-tab underline */
+.tab-underline {
+    display: block;
+    width: 260px; /* wider underline to align visually with card */
+    height: 3px;
+    background: #0e0e0e;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-underline .tab-progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: #00C6FF;
+    box-shadow: 0 0 0 1px rgba(0,198,255,0.15);
+}
+
+/* remove old shared progress bar style */
+.progress-bar { display: none; }
+
+.desire-panels {
+    padding-top: 16px; /* bring cards closer to titles */
+    position: relative;
+    min-height: 550px; /* increased height for bigger cards */
+}
+
+/* stack panels to avoid reflow on switch */
+.desire-panel {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.desire-panel.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.media-card {
+    position: relative;
+    background: #0a0a0a;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow:
+      0 24px 80px rgba(0,0,0,0.5),
+      0 8px 24px rgba(0,0,0,0.35);
+    transition: box-shadow 250ms ease;
+}
+
+.media-card:hover {
+    box-shadow:
+      0 28px 100px rgba(0,0,0,0.55),
+      0 12px 28px rgba(0,0,0,0.4);
+}
+
+.media-card img {
+    display: block;
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    filter: saturate(1.05) contrast(1.05) brightness(0.8);
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6), inset 0 0 60px rgba(0, 0, 0, 0.4);
+}
+
+.media-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.5), transparent);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.media-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.5), transparent);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.media-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 80% at 0% 0%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.0) 55%),
+      linear-gradient(180deg, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.4) 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px;
+    color: #fff;
+    pointer-events: none;
+}
+
+.media-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.media-step {
+    font-size: 1.15rem;
+    opacity: 0.9;
+}
+
+.media-caption {
+    position: absolute;
+    left: 24px;
+    bottom: 60px;
+    right: 24px;
+    color: #e5e5e5;
+}
+
+.media-caption .red-accent {
+    width: 64px;
+    height: 4px;
+    background: #00C6FF;
+    display: inline-block;
+    margin-bottom: 12px;
+    box-shadow: 0 0 0 1px rgba(0,198,255,0.2);
+}
+
+@media (max-width: 1024px) {
+    .desire-extended { padding: 140px 60px; }
+    .desire-header { grid-template-columns: 1fr; gap: 60px; margin-bottom: 60px; }
+    .desire-title h2 { font-size: 3rem; }
+    .desire-info p { font-size: 1rem; }
+    .media-card img { height: 550px; }
+    .tab-underline { width: 220px; height: 2px; }
+    .desire-panels { min-height: 550px; }
+    .media-caption { bottom: 50px; }
+}
+
+@media (max-width: 640px) {
+    .desire-extended { padding: 40px 16px 60px; }
+    .desire-container { max-width: 100%; margin: 0 auto; }
+
+    .desire-title h2 { font-size: 1.85rem; line-height: 1.15; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .desire-header { gap: 28px; margin-bottom: 28px; grid-template-columns: 1fr; }
+
+    .desire-info p { font-size: 0.92rem; line-height: 1.7; color: #d4d4d4; margin: 0 0 16px; display: block; }
+
+    .cta-link { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 600; font-size: 1rem; }
+    .cta-link .red-line { width: 22px; height: 3px; background: #00C6FF; display: inline-block; }
+
+    .desire-tabs { display: flex; flex-direction: column; gap: 12px; margin: 18px 0 10px; padding: 0; border-top: none; border-bottom: none; }
+    .desire-tabs .tab { width: 100%; padding: 10px 0 4px; border: none; background: transparent; display: block; text-align: left; gap: 8px; }
+    .desire-tabs .tab .tab-label { font-size: 0.98rem; color: #e6e6e6; font-weight: 500; }
+    .desire-tabs .tab.active .tab-label { font-weight: 700; color: #ffffff; }
+
+    .desire-tabs .tab .tab-underline { display: block; width: 100%; height: 3px; background: #262626; margin-top: 8px; position: relative; overflow: hidden; }
+    .desire-tabs .tab .tab-progress-bar { display: block; height: 100%; width: 0%; background: #00C6FF; transition: width .3s ease; }
+
+    .desire-tabs .tab + .tab { border-top: 1px solid #222; padding-top: 14px; }
+
+    .desire-panels { margin-top: 10px; min-height: 420px; }
+    .media-card { border: 1px solid #1a1a1a; background: #0b0b0b; box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+    .media-card img { height: 360px; }
+    .media-caption { padding: 18px; bottom: 24px; }
+    .media-caption p { color: #cfcfcf; line-height: 1.75; font-size: 0.92rem; }
+    .media-caption .red-accent { width: 34px; height: 3px; background: #00C6FF; display: inline-block; margin-bottom: 10px; box-shadow: none; }
+}

@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOBILITYLINE - Location de Voitures de Luxe</title>
+    <link rel="stylesheet" href="./assets/css/fonts/fonts.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="stylesheet" href="./assets/css/components/vehicle-card.css" />
+    <link rel="stylesheet" href="./assets/css/components/testimonial-banner.css" />
+    <link rel="stylesheet" href="./assets/css/components/desire-extended.css" />
+    <link rel="stylesheet" href="./assets/css/components/staggered-menu.css" />
+    <style>
+        /* Range Rover Style Carousel Animation */
+        .banner-hero {
+            opacity: 0;
+            transform: translateX(100px) scale(0.98);
+            transition: none;
+            perspective: 1200px;
+        }
+
+        .banner-hero.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        .overlay-text,
+        .overlay-author {
+            transition: none;
+            letter-spacing: 0.05em;
+        }
+
+        .overlay-text.fade-out,
+        .overlay-author.fade-out {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+
+        .overlay-text.fade-in,
+        .overlay-author.fade-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+    <style>
+        /* Hamburger menu styles */
+        .hamburger { position: relative; width: 28px; height: 16px; background: transparent; border: none; cursor: pointer; padding: 0; display: inline-flex; flex-direction: column; justify-content: space-between; align-items: center; transform: translateY(-8px); }
+        .hamburger .bar { width: 100%; height: 2px; background: #fff; display: block; transition: transform .3s ease, opacity .2s ease, background-color .3s ease; }
+        .hamburger[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger[aria-expanded="true"] .bar:nth-child(2) { transform: translateY(-7px) rotate(-45deg); }
+        .hamburger:hover .bar { background: #00C6FF; }
+    </style>
+    <style>
+        /* FAQ Section Styles */
+        .faq-section { background: #000; color: #fff; padding: 100px 60px 140px; }
+        .faq-container { max-width: 1400px; margin: 0 auto; }
+        .faq-header-section { display: grid; grid-template-columns: 1fr 0.9fr; gap: 80px; align-items: start; margin-bottom: 60px; }
+        .faq-title h2 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; font-family: 'PP Monument Extended'; font-weight: 800; font-size: 3.2rem; }
+        .faq-title h2 + h2 { margin-top: 8px; }
+        .faq-info p { color: #d4d4d4; line-height: 1.8; margin: 0 0 20px; font-family: 'PP Neue Montreal'; font-weight: 400; font-size: 1rem; }
+        .faq-cta { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-family: 'PP Neue Montreal'; font-weight: 500; font-size: 0.95rem; transition: all 0.3s ease; }
+        .faq-cta .red-line { width: 24px; height: 3px; background: #00C6FF; display: inline-block; transition: width .3s ease; }
+        .faq-cta:hover .red-line { width: 40px; }
+
+        .faq-list { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+        .faq-item { width: 100%; text-align: left; background: transparent; border: none; border-bottom: 1px solid #1f1f1f; color: #e5e5e5; padding: 24px 0; cursor: pointer; transition: all .2s ease; font-family: 'PP Neue Montreal'; display: flex; flex-direction: column; align-items: flex-start; }
+        .faq-item:hover { border-bottom-color: #00C6FF; }
+        .faq-item-header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .faq-question { font-size: 1.05rem; font-weight: 500; flex: 1; }
+        .faq-icon { color: #00C6FF; transition: transform .3s ease; font-size: 1.8rem; flex-shrink: 0; margin-left: 20px; transform: rotate(0deg); }
+        .faq-answer { display: none; width: 100%; color: #cfcfcf; padding: 24px 0 0 0; line-height: 1.8; font-size: 0.95rem; }
+        .faq-item[aria-expanded="true"] .faq-answer { display: block; }
+        .faq-item[aria-expanded="true"] .faq-icon { transform: rotate(90deg); }
+
+        @media (max-width: 1024px) {
+            .faq-section { padding: 80px 40px 100px; }
+            .faq-header-section { grid-template-columns: 1fr; gap: 40px; }
+            .faq-title h2 { font-size: 2.6rem; }
+        }
+        @media (max-width: 640px) {
+            .faq-section { padding: 70px 24px 90px; }
+            .faq-title h2 { font-size: 2.2rem; }
+            .faq-item { padding: 20px 0; }
+            .faq-question { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <a href="#">MOBILITYLINE</a>
+            </div>
+            <div class="links">
+                <div class="link">
+                    <a href="#">Nous Contacter</a>
+                </div>
+                <div class="link">
+                    <button class="hamburger sm-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="staggered-menu-panel">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Staggered Menu Wrapper -->
+        <div class="staggered-menu-wrapper" data-position="right">
+            <div class="sm-prelayers" aria-hidden="true">
+                <div class="sm-prelayer"></div>
+                <div class="sm-prelayer"></div>
+                <div class="sm-prelayer"></div>
+            </div>
+            <aside id="staggered-menu-panel" class="staggered-menu-panel" aria-hidden="true">
+                <button class="sm-close-btn" type="button" aria-label="Close menu">✕</button>
+                <div class="sm-panel-inner">
+                    <ul class="sm-panel-list" role="list">
+                        <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#"><span class="sm-panel-itemLabel">Accueil</span></a></li>
+                        <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#fleet"><span class="sm-panel-itemLabel">Flotte</span></a></li>
+                        <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#about"><span class="sm-panel-itemLabel">À Propos</span></a></li>
+                        <li class="sm-panel-itemWrap"><a class="sm-panel-item" href="#contact"><span class="sm-panel-itemLabel">Contact</span></a></li>
+                    </ul>
+                    <div class="sm-socials" aria-label="Social links">
+                        <h3 class="sm-socials-title">Réseaux Sociaux</h3>
+                        <ul class="sm-socials-list" role="list">
+                            <li class="sm-socials-item"><a href="#" class="sm-socials-link">Instagram</a></li>
+                            <li class="sm-socials-item"><a href="#" class="sm-socials-link">Facebook</a></li>
+                            <li class="sm-socials-item"><a href="#" class="sm-socials-link">YouTube</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <footer>
+            <p>© 2025 by ~Evolution Ltd.</p>
+            <p>scroll to explore</p>
+        </footer>
+        <div class="hero-video">
+            <video autoplay loop muted>
+                <source src="./I45Wil9E4jxeHIHnwi5AbODYF0.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="blocks">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+
+        <div class="header">
+            <div class="header-item">
+                <div class="header-item-wrapper h-1"><h1>M</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-2"><h1>O</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-3"><h1>B</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-4"><h1>I</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-5"><h1>L</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-6"><h1>I</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-7"><h1>T</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-8"><h1>Y</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-9"><h1>L</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-10"><h1>I</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-11"><h1>N</h1></div>
+            </div>
+            <div class="header-item">
+                <div class="header-item-wrapper h-12"><h1>E</h1></div>
+            </div>
+        </div>
+        
+        <div class="counter">
+            <p>
+                3 <br />
+                2 <br />
+                1
+            </p>
+        </div>
+
+        <div class="tagline">
+            <p class="tagline-desktop">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, nam quas sit quisquam illo culpa veritatis veniam minus vitae cum dolorem mollitia voluptate aliquid tenetur distinctio neque ipsam nisi ab!</p>
+            <p class="tagline-mobile">kilomètre après kilomètre.<br>Depuis 2008</p>
+        </div>
+        <div style="position: relative; height: 200px; background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 70%, transparent 100%); filter: blur(20px); pointer-events: none; margin-top: 0px; z-index: 5;"></div>
+    </div>
+
+    <!-- Featured Collection Section -->
+    <section class="featured-collection">
+        <div class="collection-header">
+            <div class="collection-title">
+                <h2>Découvrez Notre</h2>
+                <h2>Collection Vedette</h2>
+            </div>
+            <div class="collection-info">
+                <p>Voitures de luxe et sport sélectionnées avec soin, conçues pour ceux qui cherchent plus qu'une simple conduite – créées pour offrir élégance, puissance et un voyage inoubliable.</p>
+                <a href="#" class="view-all-link">
+                    <span class="arrow">→</span> Voir Toutes les Voitures
+                </a>
+            </div>
+        </div>
+
+        <div class="vehicles-grid">
+            <!-- Vehicle Card 1 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="./65iovQEdiFSd1NidHcTaWttZmU.webp" alt="Brabus GLE Coupe">
+                    <span class="badge new-badge">New</span>
+                </div>
+                <div class="vehicle-details">
+                    <div class="vehicle-brand">Mercedes-AMG</div>
+                    <h3 class="vehicle-name">Brabus GLE Coupe</h3>
+                    <div class="vehicle-price">€1,100 <span class="price-period">/Jour</span></div>
+                    <div class="vehicle-specs">
+                        <span class="spec"><span class="spec-icon">👥</span> 5</span>
+                        <span class="spec"><span class="spec-icon">⚙️</span> 800</span>
+                        <span class="spec"><span class="spec-icon">🔧</span> Automatique</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Card 2 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="./65iovQEdiFSd1NidHcTaWttZmU.webp" alt="Ferrari Testarossa">
+                </div>
+                <div class="vehicle-details">
+                    <div class="vehicle-brand">Ferrari</div>
+                    <h3 class="vehicle-name">Testarossa</h3>
+                    <div class="vehicle-price">€750 <span class="price-period">/Jour</span></div>
+                    <div class="vehicle-specs">
+                        <span class="spec"><span class="spec-icon">👥</span> 2</span>
+                        <span class="spec"><span class="spec-icon">⚙️</span> 390</span>
+                        <span class="spec"><span class="spec-icon">🔧</span> Manuel</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Card 3 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="./65iovQEdiFSd1NidHcTaWttZmU.webp" alt="McLaren 720S">
+                    <span class="badge new-badge">Nouveau</span>
+                </div>
+                <div class="vehicle-details">
+                    <div class="vehicle-brand">McLaren</div>
+                    <h3 class="vehicle-name">720S</h3>
+                    <div class="vehicle-price">€1,100 <span class="price-period">/Jour</span></div>
+                    <div class="vehicle-specs">
+                        <span class="spec"><span class="spec-icon">👥</span> 2</span>
+                        <span class="spec"><span class="spec-icon">⚙️</span> 710</span>
+                        <span class="spec"><span class="spec-icon">🔧</span> Automatique</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Card 4 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="./65iovQEdiFSd1NidHcTaWttZmU.webp" alt="Lamborghini Huracán EVO">
+                </div>
+                <div class="vehicle-details">
+                    <div class="vehicle-brand">Lamborghini</div>
+                    <h3 class="vehicle-name">Huracán EVO</h3>
+                    <div class="vehicle-price">€1,500 <span class="price-period">/Day</span></div>
+                    <div class="vehicle-specs">
+                        <span class="spec"><span class="spec-icon">👥</span> 2</span>
+                        <span class="spec"><span class="spec-icon">⚙️</span> 610</span>
+                        <span class="spec"><span class="spec-icon">🔧</span> Automatic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Card 5 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="./65iovQEdiFSd1NidHcTaWttZmU.webp" alt="Porsche 911 Carrera 964">
+                    <span class="badge new-badge">New</span>
+                </div>
+                <div class="vehicle-details">
+                    <div class="vehicle-brand">Porsche</div>
+                    <h3 class="vehicle-name">911 Carrera 964</h3>
+                    <div class="vehicle-price">€590 <span class="price-period">/Day</span></div>
+                    <div class="vehicle-specs">
+                        <span class="spec"><span class="spec-icon">👥</span> 4</span>
+                        <span class="spec"><span class="spec-icon">⚙️</span> 250</span>
+                        <span class="spec"><span class="spec-icon">🔧</span> Manual</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Card 6 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="./65iovQEdiFSd1NidHcTaWttZmU.webp" alt="Porsche 911 Carrera">
+                </div>
+                <div class="vehicle-details">
+                    <div class="vehicle-brand">Porsche</div>
+                    <h3 class="vehicle-name">911 Carrera</h3>
+                    <div class="vehicle-price">€850 <span class="price-period">/Day</span></div>
+                    <div class="vehicle-specs">
+                        <span class="spec"><span class="spec-icon">👥</span> 4</span>
+                        <span class="spec"><span class="spec-icon">⚙️</span> 379</span>
+                        <span class="spec"><span class="spec-icon">🔧</span> Automatic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Experience Section -->
+    <section class="luxury-experience">
+        <div class="experience-header">
+            <div class="experience-title">
+                <h2>Redéfinir la façon</h2>
+                <h2>dont vous vivez le luxe</h2>
+            </div>
+            <div class="experience-info">
+                <p>Élevez votre expérience de location de voitures avec les avantages inégalés d'Opurent. Vivez le luxe et la facilité comme jamais auparavant avec chaque fonctionnalité conçue pour votre succès.</p>
+                <a href="#" class="learn-more-link">
+                    <span class="arrow">→</span> En Savoir Plus Sur Nous
+                </a>
+            </div>
+        </div>
+
+        <div class="experience-hero">
+            <img src="./zE3aFMvGOeQtJmSMMLGnpuvBzlE.png" alt="Feel The Thrill of Performance">
+            <div class="hero-overlay">
+
+            </div>
+        </div>
+
+        <div class="experience-content">
+
+
+            <div class="experience-grid">
+                <!-- Card 1 -->
+                <div class="experience-card">
+                    <div class="card-image">
+                        <img src="./qtqthRdwsF6ZjAqLAM9u5BORTk.webp" alt="Easy Comfort">
+                    </div>
+                    <div class="card-content">
+                        <h4>Confort Facile</h4>
+                        <p>Intérieurs cousus main et technologie avancée, conçus pour ravir vos sens.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="experience-card split-card">
+                    <div class="card-content">
+                        <h4>Liberté de Choix</h4>
+                        <p>Explorez une flotte sélectionnée de voitures de luxe emblématiques, prête pour vous.</p>
+                        <a href="#" class="card-link">Choisissez Votre Voiture <span>→</span></a>
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-content">
+                        <h4>Processus Fluide</h4>
+                        <p>De la réservation à la conduite, chaque étape est rapide, facile et sans stress.</p>
+                        <a href="#" class="card-link">Comment Ça Marche <span>→</span></a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="experience-card">
+                    <div class="card-image">
+                        <img src="./3MH1WVIB7CLq7veMHqJJt4LV6DE.webp" alt="Stress-Free Service">
+                    </div>
+                    <div class="card-content">
+                        <h4>Service Sans Stress</h4>
+                        <p>Profitez d'une expérience premium sans stress avec un support dédié à chaque étape.</p>
+                        <a href="#" class="card-link">À Propos de Nos Valeurs <span>→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Banner Section -->
+    <section class="testimonial-banner">
+        <div class="testimonial-banner__container">
+            <div class="testimonial-banner__overlay">
+                <div class="overlay-icon">❝</div>
+                <p class="overlay-text">CONDUIRE LE BRABUS GLE ÉTAIT UN RÊVE ABSOLU. LE PROCESSUS DE RÉSERVATION ÉTAIT FLUIDE, LA LIVRAISON PARFAITE, ET LA VOITURE ELLE-MÊME A DÉPASSÉ TOUTES LES ATTENTES.</p>
+                <p class="overlay-author">— MICHAEL R.</p>
+            </div>
+
+            <div class="testimonial-banner__image">
+                <img src="./AoDJsUPDmUwjoHSPqQns4qaf58.webp" alt="Featured Vehicle" class="banner-hero active">
+                <img src="./FuQVUjKgkCPIDpmNj22qchmgS8.webp" alt="Vehicle 2" class="banner-hero">
+                <img src="./NPnTk2XDQkRnxoUU0XWyfX5f6ko.webp" alt="Vehicle 3" class="banner-hero">
+            </div>
+
+            <div class="testimonial-banner__thumbs">
+                <button class="thumb active" data-index="0">
+                    <img src="./AoDJsUPDmUwjoHSPqQns4qaf58.webp" alt="Thumb 1">
+                </button>
+                <button class="thumb" data-index="1">
+                    <img src="./FuQVUjKgkCPIDpmNj22qchmgS8.webp" alt="Thumb 2">
+                </button>
+                <button class="thumb" data-index="2">
+                    <img src="./NPnTk2XDQkRnxoUU0XWyfX5f6ko.webp" alt="Thumb 3">
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Desire To Drive Extended Section (moved below testimonials) -->
+    <section class="desire-extended">
+        <div class="desire-container">
+            <div class="desire-header">
+                <div class="desire-title">
+                    <h2>Un Processus Simple</h2>
+                </div>
+                <div class="desire-info">
+                    <p>Chaque détail est adapté pour vous. Sélectionnez une expérience, explorez la sensation, et immergez-vous dans le moment. Le luxe rendu facile.</p>
+                    <a href="#" class="cta-link"><span class="red-line"></span> Faites Le Premier Pas</a>
+                </div>
+            </div>
+
+            <div class="desire-tabs">
+                <button class="tab active" data-tab="0">
+                    <span class="tab-label">01: Découvrir</span>
+                    <span class="tab-underline"><span class="tab-progress-bar"></span></span>
+                </button>
+                <button class="tab" data-tab="1">
+                    <span class="tab-label">02: Sélectionner</span>
+                    <span class="tab-underline"><span class="tab-progress-bar"></span></span>
+                </button>
+                <button class="tab" data-tab="2">
+                    <span class="tab-label">03: Expérimenter</span>
+                    <span class="tab-underline"><span class="tab-progress-bar"></span></span>
+                </button>
+                <button class="tab" data-tab="3">
+                    <span class="tab-label">04: Retourner</span>
+                    <span class="tab-underline"><span class="tab-progress-bar"></span></span>
+                </button>
+            </div>
+
+            <div class="desire-panels">
+                <div class="desire-panel active">
+                    <div class="media-card">
+                        <div class="media-overlay">
+                            <div class="media-title">Sécurisez Votre Sélection</div>
+                            <div class="media-step">02</div>
+                        </div>
+                        <img src="./S91YJIrbohEEqCpBzx23QALv6Q.webp" alt="Secure" />
+                        <div class="media-caption">
+                            <span class="red-accent"></span>
+                            <p>Tarification transparente. Processus fluide. Votre temps compte — nous le traitons avec respect.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="desire-panel">
+                    <div class="media-card">
+                        <div class="media-overlay">
+                            <div class="media-title">Vivez Le Frisson</div>
+                            <div class="media-step">03</div>
+                        </div>
+                        <img src="./jW3WEEpNsrx9x8c8Aq5ktZwLKMs.webp" alt="Experience The Thrill" />
+                        <div class="media-caption">
+                            <span class="red-accent"></span>
+                            <p>Les clés sont à vous, la route vous attend. Embrassez le frisson, le confort et la liberté dans une voiture de classe mondiale.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="desire-panel">
+                    <div class="media-card">
+                        <div class="media-overlay">
+                            <div class="media-title">Découvrez Votre Correspondance</div>
+                            <div class="media-step">01</div>
+                        </div>
+                        <img src="./u0XPubaxMWfJoxlKDbMjZ7iVk2I.webp" alt="Discover" />
+                        <div class="media-caption">
+                            <span class="red-accent"></span>
+                            <p>Explorez une flotte sélectionnée d'icônes. Chaque sélection reflète l'artisanat et le caractère.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="desire-panel">
+                    <div class="media-card">
+                        <div class="media-overlay">
+                            <div class="media-title">Retournez Avec Facilité</div>
+                            <div class="media-step">04</div>
+                        </div>
+                        <img src="./xLmFxdENO5OSd3tj5GpjpFHNo4.png" alt="Return" />
+                        <div class="media-caption">
+                            <span class="red-accent"></span>
+                            <p>Remise aussi raffinée que la prise en charge. Terminez en beauté — prêt pour le prochain chapitre.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-header-section">
+                <div class="faq-title">
+                    <h2>Vos Questions</h2>
+                    <h2>— Répondues</h2>
+                </div>
+                <div class="faq-info">
+                    <p>Notre équipe dédiée d'experts s'engage à comprendre vos besoins et objectifs uniques, travaillant en étroite collaboration avec vous pour développer et exécuter.</p>
+                    <a href="#" class="faq-cta"><span class="red-line"></span> Contactez-Nous</a>
+                </div>
+            </div>
+
+            <div class="faq-list">
+                <button class="faq-item" aria-expanded="false">
+                    <div class="faq-item-header">
+                        <span class="faq-question">Quels documents ai-je besoin pour louer une voiture ?</span>
+                        <span class="faq-icon"><</span>
+                    </div>
+                    <div class="faq-answer">Un permis de conduire valide, une pièce d'identité officielle ou un passeport, et une carte de crédit pour la caution.</div>
+                </button>
+                <button class="faq-item" aria-expanded="false">
+                    <div class="faq-item-header">
+                        <span class="faq-question">Une caution est-elle requise ?</span>
+                        <span class="faq-icon"><</span>
+                    </div>
+                    <div class="faq-answer">Oui, une caution remboursable est requise et varie selon le modèle du véhicule.</div>
+                </button>
+                <button class="faq-item" aria-expanded="false">
+                    <div class="faq-item-header">
+                        <span class="faq-question">Offrez-vous des services de livraison ou de prise en charge ?</span>
+                        <span class="faq-icon"><</span>
+                    </div>
+                    <div class="faq-answer">Nous offrons la livraison et la prise en charge porte-à-porte dans certaines zones. Des frais peuvent s'appliquer selon la distance.</div>
+                </button>
+                <button class="faq-item" aria-expanded="false">
+                    <div class="faq-item-header">
+                        <span class="faq-question">Qu'en est-il de la politique de kilométrage et de carburant ?</span>
+                        <span class="faq-icon"><</span>
+                    </div>
+                    <div class="faq-answer">Les allocations de kilométrage varient par véhicule. Les voitures doivent être retournées avec le même niveau de carburant qu'à la prise en charge.</div>
+                </button>
+                <button class="faq-item" aria-expanded="false">
+                    <div class="faq-item-header">
+                        <span class="faq-question">Quelle est votre politique d'annulation ?</span>
+                        <span class="faq-icon"><</span>
+                    </div>
+                    <div class="faq-answer">Annulation gratuite jusqu'à 48 heures avant l'heure de début de la réservation. Les annulations tardives peuvent entraîner des frais.</div>
+                </button>
+                <button class="faq-item" aria-expanded="false">
+                    <div class="faq-item-header">
+                        <span class="faq-question">Comment inspecter la voiture avant de partir ?</span>
+                        <span class="faq-icon"><</span>
+                    </div>
+                    <div class="faq-answer">Notre équipe vous guidera à travers une liste de contrôle d'inspection brève pour s'assurer que tout répond à vos attentes.</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA + Footer Section -->
+    <section class="cta-footer">
+        <div class="cta-container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h3 class="cta-title">Prêt à Redéfinir Votre Conduite ?</h3>
+                    <p class="cta-text">Entrez dans un monde adapté pour vous — réservation fluide et le frisson de conduire une voiture de classe mondiale. Vivez le luxe, ne vous contentez pas de louer.</p>
+                    <a href="#" class="cta-button"><span>Parcourez Notre Flotte</span> <span class="cta-arrow">→</span></a>
+                </div>
+                <div class="cta-media">
+                    <img src="./EyvHIn6YKXuJ0GVnzsoca5kevk.webp" alt="Luxury Interior" />
+                </div>
+            </div>
+        </div>
+
+        <div class="site-footer">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="brand-wordmark">MOBILITYLINE</div>
+                    <p class="brand-tagline">Le luxe ne réside pas dans la voiture, mais dans la façon dont le moment perdure.</p>
+
+                    <div class="footer-contact">
+                        <span class="red-line"></span>
+                        <span>Contactez-Nous</span>
+                    </div>
+
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Instagram">◎</a>
+                        <a href="#" aria-label="YouTube">▶</a>
+                        <a href="#" aria-label="X">X</a>
+                        <a href="#" aria-label="WhatsApp">🟢</a>
+                        <a href="#" aria-label="Snapchat">◻</a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <a href="#">Home</a>
+                        <a href="#">Featured Cars</a>
+                        <a href="#">Why Choose Us?</a>
+                        <a href="#">How It Works</a>
+                        <a href="#">FAQ</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Pages</h4>
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Car Index</a>
+                        <a href="#">404</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>Copyright © 2025 by ~Evolution Ltd.</span>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Hero Video Responsive */
+        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; overflow: hidden; z-index: -1; }
+        .hero-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .container { position: relative; }
+        
+        @media (max-width: 1024px) {
+            .hero-video { height: 80vh; }
+            .hero-video video { object-fit: cover; object-position: center; }
+        }
+        
+        @media (max-width: 640px) {
+            .hero-video { height: 100vh; }
+            .hero-video video { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        }
+        
+        /* Close button for small devices */
+        .sm-close-btn { display: none; }
+        @media (max-width: 640px) {
+            nav { padding: 0.8em 1em !important; }
+            .sm-close-btn { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e6e6e6; background: #fff; color: #111; font-size: 18px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; z-index: 20; transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease; }
+            .sm-close-btn:hover { background: #5227FF; color: #fff; border-color: #5227FF; transform: rotate(90deg); }
+            /* Hide Contact US button on small devices */
+            nav .links .link:first-child { display: none; }
+            /* Hide footer text on small devices */
+            footer { display: none; }
+            /* Center tagline on small devices */
+            .tagline { display: flex; align-items: flex-start; justify-content: center; min-height: 100vh; text-align: center; padding-top: 400px; }
+            .tagline p { margin: 0; padding: 0 15px; font-size: 0.85rem; line-height: 1.4; }
+            .tagline-desktop { display: none; }
+            .tagline-mobile { display: block; font-size: 1.5rem; font-weight: 600; line-height: 1.6; }
+        }
+    </style>
+    <style>
+        .cta-footer { background:#000; color:#fff; padding: 12px 60px 160px; }
+        .cta-container { max-width: 100%; margin: 0 auto 200px; padding: 0 60px; }
+        .cta-card { display:grid; grid-template-columns: 1.05fr 1fr; gap: 0; background:#0a0a0a; border:1px solid #151515; border-radius: 0; overflow: hidden; box-shadow: 0 16px 40px rgba(0,0,0,.45); }
+        .cta-content { padding: 36px 36px 36px 56px; }
+        .cta-title { margin:0 0 12px; font-family:'PP Monument Extended'; font-weight:800; letter-spacing:-0.02em; font-size: 2.2rem; line-height:1.1; }
+        .cta-text { margin:0 0 20px; color:#d6d6d6; font-family:'PP Neue Montreal'; line-height:1.75; font-size: 0.98rem; max-width:560px; }
+        .cta-button { display:inline-flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-family:'PP Neue Montreal'; font-weight:600; padding: 10px 0; }
+        .cta-button .cta-arrow { transition: transform .3s ease; }
+        .cta-button:hover .cta-arrow { transform: translateX(6px); }
+        .cta-button:before { content:''; display:block; width:28px; height:3px; background:#00C6FF; margin-right:12px; transition: width .3s ease; }
+        .cta-button:hover:before { width:44px; }
+        .cta-text:before { content: ''; display: inline-block; width: 24px; height: 3px; background: #00C6FF; margin-right: 12px; vertical-align: middle; }
+        .cta-media { position: relative; }
+        .cta-media::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 400px; background: linear-gradient(to right, rgba(10, 10, 10, 0.98), rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.5), rgba(10, 10, 10, 0.2), transparent); pointer-events: none; z-index: 1; filter: blur(40px); }
+        .cta-media::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 150px; background: linear-gradient(to right, rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5), transparent); filter: blur(50px); pointer-events: none; z-index: 2; }
+        .cta-media img { display:block; width:100%; height:100%; object-fit: cover; object-position: 60% center; }
+
+        .site-footer { max-width: 1400px; margin: 0 auto; padding-top: 100px; border-top:1px solid #121212; }
+        .footer-grid { display:grid; grid-template-columns: 1.2fr 0.8fr; gap: 220px; align-items: start; }
+        .footer-brand .brand-wordmark { font-family:'PP Monument Extended'; font-weight:800; font-size: 1.9rem; letter-spacing:-0.02em; margin-bottom: 10px; }
+        .footer-brand .brand-tagline { color:#c8c8c8; max-width: 300px; line-height:1.8; margin:0 0 48px; }
+        .footer-contact { display:flex; align-items:center; gap:10px; margin: 8px 0 32px; }
+        .footer-contact .red-line, .cta-link .red-line { width:24px; height:3px; background:#00C6FF; display:inline-block; }
+        .footer-socials { display:flex; align-items:center; gap:8px; }
+        .footer-socials a { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border:1px solid #2a2a2a; border-radius:4px; color:#dcdcdc; text-decoration:none; font-size: 0.85rem; }
+        .footer-socials a:hover { border-color:#00C6FF; color:#fff; }
+        .footer-links { display:grid; grid-template-columns: 1fr 1fr; gap: 120px; }
+        .footer-col h4 { margin:0 0 24px; font-family:'PP Monument Extended'; font-size:0.95rem; font-weight:700; }
+        .footer-col a { display:block; color:#cfcfcf; text-decoration:none; padding:12px 0; font-family:'PP Neue Montreal'; font-size: 0.92rem; }
+        .footer-col a:hover { color:#fff; }
+        .footer-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid #121212; margin-top: 72px; padding-top: 32px; color:#bdbdbd; font-size:0.85rem; }
+        .footer-bottom a { color:#bdbdbd; text-decoration:none; }
+        .footer-bottom a:hover { color:#fff; }
+
+        @media(max-width: 1024px){
+            .cta-card { grid-template-columns: 1fr; }
+            .cta-content { padding: 28px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 80px; }
+            .footer-links { gap: 60px; }
+        }
+        @media(max-width: 640px){
+            .cta-footer { padding: 16px 12px 120px; }
+            .cta-container { padding: 0 12px; margin: 0 auto 240px; max-width: 100%; }
+            .cta-card { grid-template-columns: 1fr; gap: 0; border: 1px solid #1a1a1a; background: #0b0b0b; }
+            .cta-content { padding: 40px; }
+            .cta-title { font-size: 1.6rem; line-height: 1.15; margin: 0 0 16px; font-weight: 800; }
+            .cta-text { font-size: 0.85rem; line-height: 1.6; margin: 0 0 20px; }
+            .cta-button { display: inline-flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-weight: 600; padding: 0; font-size: 0.9rem; }
+            .cta-button span:first-child { display: block; }
+            .cta-button .cta-arrow { display: inline; font-size: 1.1rem; }
+            .cta-button:before { width: 56px; height: 4px; background: #D64040; margin-right: 0; margin-bottom: 0; display: inline-block; }
+            .cta-media { position: relative; height: 380px; }
+            .cta-media::before { display: none; }
+            .cta-media::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 80px; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3), transparent); filter: blur(25px); pointer-events: none; z-index: 2; }
+            .cta-media img { height: 100%; object-fit: cover; }
+            .site-footer { padding-top: 60px; }
+            .footer-grid { gap: 60px; }
+            footer { display: none; }
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        const tl = gsap.timeline({delay: 1.75});
+        const movements = [-100, 300, 150, -300, -90, 100, -200, 250, -150, 120, -80, 180];
+
+
+        gsap.set("h1", { y: 100 });
+        gsap.set(".counter p", {y: 35});
+
+        tl.to("h1", {
+            y:0,
+            duration: 1,
+            ease : "power3.out",
+            stagger : 0.1,
+
+        });
+
+        tl.to(".counter p", {
+            y:0,
+            duration: 0.5,
+            ease : "power3.out",
+            
+        },
+        "-=0.5"
+        );
+        tl.to(".counter p",{
+            y:-35,
+            duration: 0.5,
+            ease : "power3.out",
+            delay:0.5,
+
+        });
+
+        tl.to(".counter p", 
+        {
+            y:-70,
+            duration: 0.5,
+            ease : "power3.out",
+            delay: 0.5,
+            
+        });
+
+        tl.to(".counter p", 
+        {
+            y:-105,
+            duration: 0.5,
+            ease : "power3.out",
+            delay:0.75,
+            
+        });
+
+        // Show tagline on small devices during counter animation
+        const tagline = document.querySelector('.tagline');
+        const isSmallDevice = window.innerWidth <= 600;
+        
+        if (isSmallDevice && tagline) {
+            tl.to(tagline, {
+                onStart: () => {
+                    tagline.classList.add('show');
+                }
+            }, "-=3.5");
+        } else {
+            tl.from(
+                ".tagline", 
+            {
+                y:40,
+                opacity:0,
+            },
+             "-=4"
+            );
+        }
+
+        tl.to("h1", {
+            fontSize: "15vw",
+            duration: 1,
+            ease : "power3.out",
+        });
+        
+        tl.to(".header-item", {
+            clipPath: "none",
+            duration: 0.1,
+        },
+         "<"
+        );
+
+        tl.to(".block",{
+            clipPath: "polygon(0% 0%, 100% 0, 100% 0%, 0% 0%)",
+            duration: 0.5,
+            stagger: {
+                amount: 0.5,
+                from: "random",
+                ease: "power3.out",
+            },
+        },
+        "<"
+        );
+
+        movements.forEach((move, index) => {
+            tl.to(`.h-${index + 1}`, {
+                y: move,
+                duration: 1,
+                ease: "power3.out",
+            }, 
+            "<"
+            );
+        });
+
+        tl.to("h1", {
+            fontSize: "12vw",
+            duration: 1,
+            ease: "power3.out",
+        });
+
+        tl.from(".logo, .link, footer p",{
+            y: 40,
+            opacity: 0,
+            stagger: 0.2
+        });
+
+        // Testimonial Banner Image Carousel with Dynamic Text
+        const bannerThumbs = document.querySelectorAll('.testimonial-banner__thumbs .thumb');
+        const bannerHeros = document.querySelectorAll('.banner-hero');
+        const overlayText = document.querySelector('.overlay-text');
+        const overlayAuthor = document.querySelector('.overlay-author');
+
+        // Desire Extended Tabs + Per-Tab Autoplay Progress
+        const desireTabs = document.querySelectorAll('.desire-tabs .tab');
+        const desirePanels = document.querySelectorAll('.desire-panel');
+        const tabBars = document.querySelectorAll('.desire-tabs .tab-underline .tab-progress-bar');
+
+        let activeIndex = 0;
+        const STEP_COUNT = desireTabs.length || 4;
+        const STEP_DURATION = 5; // seconds for each step
+        let progressTl = null;
+        let isSwitching = false;
+
+        function resetAllBars() {
+            tabBars.forEach(bar => { bar.style.width = '0%'; });
+        }
+
+        function clearInline(el) {
+            if (!el) return;
+            el.style.removeProperty('opacity');
+            el.style.removeProperty('transform');
+            el.style.removeProperty('display');
+        }
+
+        function setActive(index) {
+            const nextIndex = (index + STEP_COUNT) % STEP_COUNT;
+            if (nextIndex === activeIndex && !isSwitching) return;
+            if (isSwitching) return; // prevent re-entrancy while switching
+            isSwitching = true;
+
+            const currentPanel = desirePanels[activeIndex];
+            const nextPanel = desirePanels[nextIndex];
+
+            // Update tab active state immediately
+            desireTabs.forEach(t => t.classList.remove('active'));
+            desireTabs[nextIndex].classList.add('active');
+
+            // Ensure next panel is ready (we avoid display toggling to prevent reflow)
+            // Panels are absolutely stacked via CSS; we animate only transforms/opacity.
+
+            // Animate panel transition
+            const tlSwitch = gsap.timeline({
+                onComplete: () => {
+                    // finalize states
+                    desirePanels.forEach(p => p.classList.remove('active'));
+                    if (nextPanel) nextPanel.classList.add('active');
+                    activeIndex = nextIndex;
+                    // cleanup inline styles to avoid accumulation
+                    clearInline(currentPanel);
+                    clearInline(nextPanel);
+                    isSwitching = false;
+                }
+            });
+
+            if (currentPanel) {
+                tlSwitch.fromTo(currentPanel, {opacity: 1, x: 0, scale: 1}, {
+                    opacity: 0,
+                    x: -40,
+                    scale: 0.98,
+                    duration: 0.35,
+                    ease: 'sine.inOut'
+                });
+            }
+
+            // Prepare next panel offscreen
+            if (nextPanel) {
+                tlSwitch.fromTo(nextPanel, {opacity: 0, x: 40, scale: 1.02}, {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 0.45,
+                    ease: 'sine.out'
+                }, currentPanel ? '>-0.05' : 0);
+            }
+        }
+
+        function startProgress(fromStart = true) {
+            if (progressTl) progressTl.kill();
+            if (fromStart) resetAllBars();
+
+            const bar = tabBars[activeIndex];
+            if (!bar) return;
+
+            progressTl = gsap.timeline({ onComplete: () => {
+                // if a switch is still running, retry shortly to keep sync
+                if (isSwitching) {
+                    setTimeout(() => startProgress(true), 50);
+                    return;
+                }
+                setActive(activeIndex + 1);
+                startProgress(true);
+            }});
+
+            progressTl.to(bar, {
+                width: '100%',
+                duration: STEP_DURATION,
+                ease: 'none'
+            });
+        }
+
+        // Initialize
+        setActive(0);
+        startProgress(true);
+
+        // Manual click interrupts and restarts progress from that tab
+        desireTabs.forEach((tab, idx) => {
+            tab.addEventListener('click', () => {
+                setActive(idx);
+                startProgress(true);
+            });
+        });
+
+        // Testimonials data
+        const testimonials = [
+            {
+                text: "CONDUIRE LE BRABUS GLE ÉTAIT UN RÊVE ABSOLU. LE PROCESSUS DE RÉSERVATION ÉTAIT FLUIDE, LA LIVRAISON PARFAITE, ET LA VOITURE ELLE-MÊME A DÉPASSÉ TOUTES LES ATTENTES.",
+                author: "— MICHAEL R."
+            },
+            {
+                text: "LA FERRARI TESTAROSSA A OFFERT UNE EXPÉRIENCE INOUBLIABLE. SERVICE IMPECCABLE, PERFORMANCE ÉTONNANTE, ET CHAQUE INSTANT ÉTAIT DU LUXE PUR.",
+                author: "— SARAH J."
+            },
+            {
+                text: "LOUER LA MCLAREN 720S ÉTAIT INCROYABLE. RÉSERVATION SANS FAILLE, CONDITION PARFAITE, ET LA CONDUITE ÉTAIT ABSOLUMENT GRISANTE.",
+                author: "— JAMES T."
+            }
+        ];
+
+        bannerThumbs.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                const index = parseInt(thumb.getAttribute('data-index'), 10);
+                
+                // Create animation timeline - Range Rover style
+                const switchTimeline = gsap.timeline();
+                
+                // Smooth fade out and slide left for current image
+                switchTimeline.to(bannerHeros, {
+                    opacity: 0,
+                    x: -80,
+                    scale: 0.95,
+                    duration: 0.7,
+                    ease: "sine.inOut"
+                }, 0);
+                
+                // Fade out text with elegant slide
+                switchTimeline.to(overlayText, {
+                    opacity: 0,
+                    x: -50,
+                    duration: 0.5,
+                    ease: "sine.inOut"
+                }, 0);
+                
+                switchTimeline.to(overlayAuthor, {
+                    opacity: 0,
+                    x: -50,
+                    duration: 0.5,
+                    ease: "sine.inOut"
+                }, 0.1);
+                
+                // Update active states and content at midpoint
+                switchTimeline.add(() => {
+                    bannerThumbs.forEach(t => t.classList.remove('active'));
+                    bannerHeros.forEach(img => img.classList.remove('active'));
+                    
+                    thumb.classList.add('active');
+                    bannerHeros[index].classList.add('active');
+                    
+                    if (testimonials[index]) {
+                        overlayText.textContent = testimonials[index].text;
+                        overlayAuthor.textContent = testimonials[index].author;
+                    }
+                }, 0.35);
+                
+                // Smooth slide in from right for new image
+                switchTimeline.to(bannerHeros[index], {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "sine.out"
+                }, 0.35);
+                
+                // Elegant text fade in with stagger
+                switchTimeline.to(overlayText, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.6,
+                    ease: "sine.out"
+                }, 0.5);
+                
+                switchTimeline.to(overlayAuthor, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.6,
+                    ease: "sine.out"
+                }, 0.65);
+            });
+        });
+
+        // FAQ Accordion Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    const answer = this.querySelector('.faq-answer');
+                    
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== this && otherItem.getAttribute('aria-expanded') === 'true') {
+                            otherItem.setAttribute('aria-expanded', 'false');
+                            const otherAnswer = otherItem.querySelector('.faq-answer');
+                            gsap.to(otherAnswer, {
+                                height: 0,
+                                opacity: 0,
+                                marginBottom: 0,
+                                duration: 0.5,
+                                ease: 'power2.inOut'
+                            });
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isExpanded) {
+                        this.setAttribute('aria-expanded', 'false');
+                        gsap.to(answer, {
+                            height: 0,
+                            opacity: 0,
+                            marginBottom: 0,
+                            duration: 0.5,
+                            ease: 'power2.inOut'
+                        });
+                    } else {
+                        this.setAttribute('aria-expanded', 'true');
+                        const height = answer.scrollHeight;
+                        gsap.fromTo(answer, 
+                            { height: 0, opacity: 0, marginBottom: 0 },
+                            {
+                                height: height,
+                                opacity: 1,
+                                marginBottom: 16,
+                                duration: 0.6,
+                                ease: 'power2.out',
+                                onComplete: () => {
+                                    answer.style.height = 'auto';
+                                }
+                            }
+                        );
+                    }
+                });
+            });
+        });
+
+    // Staggered Menu logic (GSAP-powered to match original)
+    (function(){
+        const wrapper = document.querySelector('.staggered-menu-wrapper');
+        const panel = document.getElementById('staggered-menu-panel');
+        const toggle = document.querySelector('.hamburger');
+        const prelayers = Array.from(document.querySelectorAll('.sm-prelayer'));
+        const itemLabels = Array.from(document.querySelectorAll('.sm-panel-itemLabel'));
+        const numberedItems = Array.from(document.querySelectorAll('.sm-panel-list .sm-panel-item'));
+        const socialsTitle = document.querySelector('.sm-socials-title');
+        const socialLinks = Array.from(document.querySelectorAll('.sm-socials-link'));
+        const closeBtn = document.querySelector('.sm-close-btn');
+
+        let open = false;
+        let lastFocused = null;
+        let openTl = null; // main open timeline
+        let closeTween = null; // close tween to move offscreen
+        let busy = false;
+
+        // Initial states to mirror React component
+        function setInitialStates(){
+            const off = 100; // right side
+            gsap.set([panel, ...prelayers], { xPercent: off });
+            if (itemLabels.length) gsap.set(itemLabels, { yPercent: 140, rotate: 10, transformOrigin: '50% 100%' });
+            if (numberedItems.length) gsap.set(numberedItems, { '--sm-num-opacity': 0 });
+            if (socialsTitle) gsap.set(socialsTitle, { opacity: 0 });
+            if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
+        }
+        setInitialStates();
+
+        function buildOpenTimeline(){
+            if (!panel) return null;
+            if (openTl) { openTl.kill(); openTl = null; }
+            if (closeTween) { closeTween.kill(); closeTween = null; }
+
+            const layerStates = prelayers.map(el => ({ el, start: Number(gsap.getProperty(el, 'xPercent')) }));
+            const panelStart = Number(gsap.getProperty(panel, 'xPercent'));
+
+            // Ensure inner states are reset for entrance
+            if (itemLabels.length) gsap.set(itemLabels, { yPercent: 140, rotate: 10 });
+            if (numberedItems.length) gsap.set(numberedItems, { '--sm-num-opacity': 0 });
+            if (socialsTitle) gsap.set(socialsTitle, { opacity: 0 });
+            if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
+
+            const tl = gsap.timeline({ paused: true });
+
+            // Sweep-in prel ayers with small offsets
+            layerStates.forEach((ls, i) => {
+                tl.fromTo(ls.el, { xPercent: ls.start }, { xPercent: 0, duration: 0.5, ease: 'power4.out' }, i * 0.07);
+            });
+
+            const lastTime = layerStates.length ? (layerStates.length - 1) * 0.07 : 0;
+            const panelInsertTime = lastTime + (layerStates.length ? 0.08 : 0);
+            const panelDuration = 0.65;
+
+            tl.fromTo(panel, { xPercent: panelStart }, { xPercent: 0, duration: panelDuration, ease: 'power4.out' }, panelInsertTime);
+
+            if (itemLabels.length) {
+                const itemsStartRatio = 0.15;
+                const itemsStart = panelInsertTime + panelDuration * itemsStartRatio;
+                tl.to(itemLabels, {
+                    yPercent: 0,
+                    rotate: 0,
+                    duration: 1,
+                    ease: 'power4.out',
+                    stagger: { each: 0.1, from: 'start' }
+                }, itemsStart);
+
+                if (numberedItems.length) {
+                    tl.to(numberedItems, {
+                        duration: 0.6,
+                        ease: 'power2.out',
+                        '--sm-num-opacity': 1,
+                        stagger: { each: 0.08, from: 'start' }
+                    }, itemsStart + 0.1);
+                }
+            }
+
+            if (socialsTitle || socialLinks.length) {
+                const socialsStart = panelInsertTime + panelDuration * 0.4;
+                if (socialsTitle) {
+                    tl.to(socialsTitle, { opacity: 1, duration: 0.5, ease: 'power2.out' }, socialsStart);
+                }
+                if (socialLinks.length) {
+                    tl.to(socialLinks, {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.55,
+                        ease: 'power3.out',
+                        stagger: { each: 0.08, from: 'start' },
+                        onComplete: () => gsap.set(socialLinks, { clearProps: 'opacity' })
+                    }, socialsStart + 0.04);
+                }
+            }
+
+            return tl;
+        }
+
+        function animateIcon(opening){
+            // rotate the two bars to form an X similar to 225deg rotation effect
+            if (!toggle) return;
+            const bars = toggle.querySelectorAll('.bar');
+            if (opening) {
+                gsap.to(bars[0], { y: 7, rotate: 45, duration: 0.35, ease: 'power3.out' });
+                gsap.to(bars[1], { y: -7, rotate: -45, duration: 0.35, ease: 'power3.out' });
+            } else {
+                gsap.to(bars[0], { y: 0, rotate: 0, duration: 0.35, ease: 'power3.inOut' });
+                gsap.to(bars[1], { y: 0, rotate: 0, duration: 0.35, ease: 'power3.inOut' });
+            }
+        }
+
+        function trapFocus(e){
+            if (!open) return;
+            const focusables = panel.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.key === 'Tab') {
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
+            if (e.key === 'Escape') closeMenu();
+        }
+
+        function openMenu(){
+            if (busy || open) return;
+            busy = true;
+            open = true;
+            lastFocused = document.activeElement;
+
+            wrapper.setAttribute('data-open','');
+            wrapper.removeAttribute('aria-hidden');
+            panel.setAttribute('aria-hidden','false');
+            toggle.setAttribute('aria-expanded','true');
+            document.addEventListener('keydown', trapFocus);
+            animateIcon(true);
+
+            openTl = buildOpenTimeline();
+            if (openTl) {
+                openTl.eventCallback('onComplete', () => {
+                    busy = false;
+                });
+                openTl.play(0);
+            } else {
+                busy = false;
+            }
+
+            setTimeout(()=>{
+                const firstLink = panel.querySelector('a, button');
+                if (firstLink) firstLink.focus();
+            }, 250);
+        }
+
+        function closeMenu(){
+            if (busy || !open) return;
+            busy = true;
+            open = false;
+
+            if (openTl) { openTl.kill(); openTl = null; }
+
+            const off = 100;
+            const all = [...prelayers, panel];
+            closeTween = gsap.to(all, {
+                xPercent: off,
+                duration: 0.32,
+                ease: 'power3.in',
+                overwrite: 'auto',
+                onComplete: () => {
+                    if (itemLabels.length) gsap.set(itemLabels, { yPercent: 140, rotate: 10 });
+                    if (numberedItems.length) gsap.set(numberedItems, { '--sm-num-opacity': 0 });
+                    if (socialsTitle) gsap.set(socialsTitle, { opacity: 0 });
+                    if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
+                    wrapper.removeAttribute('data-open');
+                    wrapper.setAttribute('aria-hidden','true');
+                    panel.setAttribute('aria-hidden','true');
+                    toggle.setAttribute('aria-expanded','false');
+                    document.removeEventListener('keydown', trapFocus);
+                    animateIcon(false);
+                    busy = false;
+                    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+                }
+            });
+        }
+
+        if (toggle) {
+            toggle.addEventListener('click', () => {
+                open ? closeMenu() : openMenu();
+            });
+        }
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => closeMenu());
+        }
+        // close on outside click
+        document.addEventListener('click', (e)=>{
+            if (!open) return;
+            if (panel.contains(e.target) || toggle.contains(e.target)) return;
+            closeMenu();
+        });
+    })();
+    </script>    
+</body>
+</html>
