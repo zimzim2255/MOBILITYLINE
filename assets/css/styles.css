@@ -160,26 +160,10 @@ h1 {
 
 @media(max-width: 600px) {
     .tagline {
-        width: 90%;
-        bottom: auto;
-        top: 65%;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 1.5rem;
-        border-bottom: 1px solid #00C6FF;
-        opacity: 0;
-        pointer-events: none;
-        z-index: 15;
-        font-size: 0.85rem;
-        line-height: 1.6;
-        animation: none;
-        max-height: 200px;
-        overflow-y: auto;
+        display: none;
     }
 
     .tagline.show {
-        opacity: 1;
-        pointer-events: auto;
+        display: none;
     }
 }
